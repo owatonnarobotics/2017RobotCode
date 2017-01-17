@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
 	
-//public static XboxController xboxController = new XboxController();
+	public static XboxController xboxController = new XboxController();
     
     public static Joystick joystick = new Joystick(0);
     public static Joystick joystick2 = new Joystick(1);
