@@ -6,5 +6,10 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="lib" path="build/jars/NetworkTables.jar"/>
 	<classpathentry kind="lib" path="build/jars/WPILib.jar"/>
+	<classpathentry kind="lib" path="library/SmoothCurve.java"/>
+	<classpathentry kind="lib" path="library/Tools.java"/>
+	<classpathentry kind="lib" path="library/XboxController.java"/>
+	<classpathentry kind="var" path="opencv" sourcepath="opencv.sources"/>
+	<classpathentry kind="var" path="cscore" sourcepath="cscore.sources"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
