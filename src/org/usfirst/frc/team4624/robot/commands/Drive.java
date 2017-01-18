@@ -23,8 +23,8 @@ public class Drive extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		// use this for dual joystick controls
-		Robot.driveTrain.driveSkid(Robot.oi.joystick.getRawAxis(0), Robot.oi.joystick.getRawAxis(1),
-				Robot.oi.joystick2.getRawAxis(0), Robot.oi.joystick2.getRawAxis(1));
+		//Robot.driveTrain.driveSkid(Robot.oi.joystick.getRawAxis(0), Robot.oi.joystick.getRawAxis(1),
+		//		Robot.oi.joystick2.getRawAxis(0), Robot.oi.joystick2.getRawAxis(1));
 		// use this for Xbox controls
 		Robot.driveTrain.driveSkid(Robot.oi.xboxController.leftStick.getX(), Robot.oi.xboxController.leftStick.getY(),
 				Robot.oi.xboxController.rightStick.getX(), Robot.oi.xboxController.rightStick.getY());

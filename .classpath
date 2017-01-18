@@ -9,6 +9,7 @@
 	<classpathentry kind="lib" path="library/SmoothCurve.java"/>
 	<classpathentry kind="lib" path="library/Tools.java"/>
 	<classpathentry kind="lib" path="library/XboxController.java"/>
+	<classpathentry kind="lib" path="wpilib/java/current/lib/WPILib.jar"/>
 	<classpathentry kind="var" path="opencv" sourcepath="opencv.sources"/>
 	<classpathentry kind="var" path="cscore" sourcepath="cscore.sources"/>
 	<classpathentry kind="output" path="bin"/>
