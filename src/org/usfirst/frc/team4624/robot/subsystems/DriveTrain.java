@@ -44,8 +44,6 @@ public class DriveTrain extends Subsystem {
     	double y1move = Math.pow(y1, 3);
     	double y2move = Math.pow(y2, 3);
     	double output = 0;
-    	//fLMotor.pidWrite(output);
-    	
     	
     	if (x1move < .05 && x1move > -.05) {
     		fLMotor.set(-y1move);
