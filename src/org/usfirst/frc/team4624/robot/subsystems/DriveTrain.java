@@ -43,8 +43,8 @@ public class DriveTrain extends Subsystem {
     	double x2move = Math.pow(x2, 3);
     	double y1move = Math.pow(y1, 3);
     	double y2move = Math.pow(y2, 3);
-    	double output = 0;
     	
+    	/*
     	if (x1move < .05 && x1move > -.05) {
     		fLMotor.set(-y1move);
     		bLMotor.set(-y1move);
@@ -57,6 +57,24 @@ public class DriveTrain extends Subsystem {
     	} if (x2move >= .05 || x2move <= -.05) {    	
     		fRMotor.set(x2move);
     		bRMotor.set(-x2move - y2move);
+    	}
+    	*/
+    	
+    	if (x2move > .05 || x2move < -.05) {
+    		fLMotor.set(x2move);
+    		bLMotor.set(x2move);
+    		fRMotor.set(x2move);
+    		bRMotor.set(x2move);
+    	} if (x1move > .05 || x1move < -.05) {
+    		fLMotor.set(x1move);
+    		bLMotor.set(-x1move);
+    		fRMotor.set(x1move);
+    		bRMotor.set(-x1move);
+    	} else {
+    		fLMotor.set(y1move);
+    		bLMotor.set(y1move);
+    		fRMotor.set(y1move);
+    		bRMotor.set(y1move);
     	}
     
     }
