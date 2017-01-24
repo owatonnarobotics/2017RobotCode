@@ -39,11 +39,10 @@ public class DriveTrain extends Subsystem {
            
     }
     
-    public void driveSkid(double x1, double y1, double x2, double y2) {
+    public void driveRaw(double x1, double y1, double x2) {
     	double x1move = Math.pow(x1, 3);
     	double x2move = Math.pow(x2, 3);
     	double y1move = Math.pow(y1, 3);
-    	double y2move = Math.pow(y2, 3);
     	
     	/*
     	if (x1move < .05 && x1move > -.05) {
