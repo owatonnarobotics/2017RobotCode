@@ -18,16 +18,16 @@ public class OI {
 	
 	public static XboxController xboxController = new XboxController();
     
-	/*
+	
     public static Joystick joystick = new Joystick(0);
     public static Joystick joystick2 = new Joystick(1);
     
     public static JoystickButton button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11;
     public static JoystickButton button2_1 ,button2_2, button2_3, button2_4, button2_5, button2_6 ,button2_7, button2_8, button2_9, button2_10, button2_11;
-	*/
+	
 	
     public OI() {
-    /*
+    
     button1  = new JoystickButton(joystick, 1);
     button2  = new JoystickButton(joystick, 2);
     button3  = new JoystickButton(joystick, 3);
@@ -51,7 +51,7 @@ public class OI {
     button2_9  = new JoystickButton(joystick2, 9);
     button2_10 = new JoystickButton(joystick2, 10);
     button2_11 = new JoystickButton(joystick2, 11);
-    */
+    
     
     xboxController.rb.whenPressed(new ShootUp());
     xboxController.lb.whenPressed(new ShootDown());
