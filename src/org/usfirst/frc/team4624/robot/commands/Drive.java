@@ -26,7 +26,7 @@ public class Drive extends Command {
 		//Robot.driveTrain.driveRaw(Robot.oi.xboxController.leftStick.getX(), Robot.oi.xboxController.leftStick.getY(),
 		//		Robot.oi.xboxController.rightStick.getX());
 		//use this for the twisty joystick
-		Robot.driveTrain.driveRaw(Robot.oi.joystick.getX(), Robot.oi.joystick.getY(), Robot.oi.joystick.getThrottle());
+		Robot.driveTrain.driveRaw(Robot.oi.joystick.getX(), Robot.oi.joystick.getY(), Robot.oi.joystick.getTwist());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

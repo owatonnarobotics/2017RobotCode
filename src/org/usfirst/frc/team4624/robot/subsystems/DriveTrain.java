@@ -60,21 +60,21 @@ public class DriveTrain extends Subsystem {
     	}
     	*/
     	
-    	if (!(x1move == 0)) {
-    		fLMotor.set(x1move);
-    		bLMotor.set(-x1move);
-    		fRMotor.set(x1move);
-    		bRMotor.set(-x1move);
+    	if (x1move > .05 || x1move < -.05) {
+    		fLMotor.set(-x1move + y1move);
+    		bLMotor.set(x1move + y1move);
+    		fRMotor.set(-x1move - y1move);
+    		bRMotor.set(x1move - y1move);
     	} else if (x2move > .05) {
-    		fLMotor.set(y1move + (x2move/2));
-    		bLMotor.set(y1move + (x2move/2));
-    		fRMotor.set(-y1move + (x2move/2));
-    		bRMotor.set(-y1move + (x2move/2));
+    		fLMotor.set(y1move + (x2move/2) - x1move);
+    		bLMotor.set(y1move + (x2move/2) + x1move);
+    		fRMotor.set(-y1move + (x2move/2) - x1move);
+    		bRMotor.set(-y1move + (x2move/2) + x1move);
     	} else if (x2move < -.05) {
-    		fLMotor.set(y1move + (x2move/2));
-    		bLMotor.set(y1move + (x2move/2));
-    		fRMotor.set(-y1move + (x2move/2));
-    		bRMotor.set(-y1move + (x2move/2));
+    		fLMotor.set(y1move + (x2move/2) - x1move);
+    		bLMotor.set(y1move + (x2move/2) + x1move);
+    		fRMotor.set(-y1move + (x2move/2) - x1move);
+    		bRMotor.set(-y1move + (x2move/2) + x1move);
     	} else {
     		fLMotor.set(y1move);
     		bLMotor.set(y1move);
