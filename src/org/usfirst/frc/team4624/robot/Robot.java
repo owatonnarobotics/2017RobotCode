@@ -25,7 +25,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * IterativeRobot documentation. If you change the name of this class or the package after creating this project, you must also update the
  * manifest file in the resource directory.
  */
-public class Robot extends IterativeRobot implements PIDOutput{
+public class Robot extends IterativeRobot implements PIDOutput {
 	
 	public static final ExampleSubsystem	exampleSubsystem	= new ExampleSubsystem();
 	public static final DriveTrain			driveTrain			= new DriveTrain();
@@ -130,7 +130,7 @@ public class Robot extends IterativeRobot implements PIDOutput{
 	public void testPeriodic() {
 		LiveWindow.run();
 	}
-
+	
 	public void pidWrite(double output) {
 		DriveTrain.rotateToAngleRate = output;
 	}
