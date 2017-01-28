@@ -5,7 +5,9 @@ import org.usfirst.frc.team4624.robot.Robot;
 import org.usfirst.frc.team4624.robot.RobotMap;
 import org.usfirst.frc.team4624.robot.commands.Drive;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -17,12 +19,15 @@ public class DriveTrain extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	
-	final VictorSP	fLMotor		= new VictorSP(RobotMap.frontLeftMotor);
-	final VictorSP	fRMotor		= new VictorSP(RobotMap.frontRightMotor);
-	final VictorSP	bLMotor		= new VictorSP(RobotMap.backLeftMotor);
-	final VictorSP	bRMotor		= new VictorSP(RobotMap.backRightMotor);
+	final VictorSP			fLMotor			= new VictorSP(RobotMap.frontLeftMotor);
+	final VictorSP			fRMotor			= new VictorSP(RobotMap.frontRightMotor);
+	final VictorSP			bLMotor			= new VictorSP(RobotMap.backLeftMotor);
+	final VictorSP			bRMotor			= new VictorSP(RobotMap.backRightMotor);
 	
-	RobotDrive		driveTrain	= new RobotDrive(fLMotor, bLMotor, fRMotor, bRMotor);
+	public static double	rotateToAngleRate;
+	boolean					rotateToAngle	= false;
+	
+	RobotDrive				driveTrain		= new RobotDrive(fLMotor, bLMotor, fRMotor, bRMotor);
 	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
@@ -87,6 +92,49 @@ public class DriveTrain extends Subsystem {
 		bLMotor.setDisabled();
 		fRMotor.setDisabled();
 		bRMotor.setDisabled();
+	}
+	
+	public void driveNavX(double x1, double y1, double x2) {
+		double x1move = Math.pow(x1, 3);
+		double x2move = Math.pow(x2, 3);
+		double y1move = Math.pow(y1, 3);
+		
+		if (Robot.oi.joystick.getRawButton(1)) {
+			Robot.controllerPID.setSetpoint(0.0f);
+			rotateToAngle = true;
+		}
+		if (Robot.oi.joystick.getRawButton(2)) {
+			Robot.controllerPID.setSetpoint(90.0f);
+			rotateToAngle = true;
+		}
+		if (Robot.oi.joystick.getRawButton(3)) {
+			Robot.controllerPID.setSetpoint(179.9f);
+			rotateToAngle = true;
+		}
+		if (Robot.oi.joystick.getRawButton(4)) {
+			Robot.controllerPID.setSetpoint(-90.0f);
+			rotateToAngle = true;
+		}
+		double currentRotateRate;
+		if (rotateToAngle) {
+			Robot.controllerPID.enable();
+			currentRotateRate = rotateToAngleRate;
+			
+		}
+		else {
+			Robot.controllerPID.disable();
+			currentRotateRate = Robot.oi.joystick.getTwist();
+		}
+		
+		try {
+			driveTrain.mecanumDrive_Cartesian(x1move, y1move, currentRotateRate, Robot.navx.getAngle());
+		}
+		catch (RuntimeException ex) {
+			DriverStation.reportError("Error communicating with drive system:  " + ex.getMessage(), true);
+			
+		}
+		Timer.delay(0.005);
+		
 	}
 	
 }
