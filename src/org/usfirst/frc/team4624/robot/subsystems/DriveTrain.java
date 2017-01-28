@@ -44,48 +44,44 @@ public class DriveTrain extends Subsystem {
     	double x2move = Math.pow(x2, 3);
     	double y1move = Math.pow(y1, 3);
     	
-    	/*
+    	double fLWheelSpeed = 0;
+    	double fRWheelSpeed = 0;
+    	double bLWheelSpeed = 0;
+    	double bRWheelSpeed = 0;
+    	
     	if (x1move < .05 && x1move > -.05) {
-    		fLMotor.set(-y1move);
-    		bLMotor.set(-y1move);
-    	} if (x1move >= .05 || x1move <= -.05) {    	
-    		fLMotor.set(x1move);
-    		bLMotor.set(-x1move - y1move);
-    	} if (x2move < .05 && x2move > -.05) {
-    		fRMotor.set(y2move);
-    		bRMotor.set(y2move);
-    	} if (x2move >= .05 || x2move <= -.05) {    	
-    		fRMotor.set(x2move);
-    		bRMotor.set(-x2move - y2move);
+    		x1move = 0;
     	}
-    	*/
+    	if (y1move < .05 && y1move > -.05) {
+    		y1move = 0;
+    	}
+    	if (x2move < .05 && x2move > -.05) {
+    		x2move = 0;
+    	}
     	
-    	if (x1move > .05 || x1move < -.05) {
-    		fLMotor.set(-x1move + y1move);
-    		bLMotor.set(x1move + y1move);
-    		fRMotor.set(-x1move - y1move);
-    		bRMotor.set(x1move - y1move);
-    	} else if (x2move > .05) {
-    		fLMotor.set(y1move + (x2move/2) - x1move);
-    		bLMotor.set(y1move + (x2move/2) + x1move);
-    		fRMotor.set(-y1move + (x2move/2) - x1move);
-    		bRMotor.set(-y1move + (x2move/2) + x1move);
-    	} else if (x2move < -.05) {
-    		fLMotor.set(y1move + (x2move/2) - x1move);
-    		bLMotor.set(y1move + (x2move/2) + x1move);
-    		fRMotor.set(-y1move + (x2move/2) - x1move);
-    		bRMotor.set(-y1move + (x2move/2) + x1move);
+    	fLWheelSpeed = (x1move - y1move + x2move);
+    	fRWheelSpeed = (-x1move - y1move + x2move);
+    	bLWheelSpeed = (x1move + y1move + x2move);
+    	bRWheelSpeed = (-x1move + y1move + x2move);
+    	
+    	if (!(x1move == 0) || !(x2move == 0) || !(y1move == 0)) {
+    		fLMotor.set(x1move - y1move + (x2move/2));
+    		bLMotor.set(-x1move - y1move + (x2move/2));
+    		fRMotor.set(x1move + y1move + (x2move/2));
+    		bRMotor.set(-x1move + y1move + (x2move/2));
     	} else {
-    		fLMotor.set(y1move);
-    		bLMotor.set(y1move);
-    		fRMotor.set(-y1move);
-    		bRMotor.set(-y1move);
-    	}
-    	
+    		fLMotor.setDisabled();
+    		fRMotor.setDisabled();
+    		bLMotor.setDisabled();
+    		bRMotor.setDisabled();
+    	}	
     }
     
     public void stop() {
-    	driveTrain.mecanumDrive_Cartesian(0, 0, 0, 0);
+    	fLMotor.setDisabled();
+		bLMotor.setDisabled();
+		fRMotor.setDisabled();
+		bRMotor.setDisabled();
     }
     
 }
