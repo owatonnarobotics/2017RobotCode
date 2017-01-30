@@ -43,47 +43,33 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	public void driveRaw(double x1, double y1, double x2) {
-		double x1move = Math.pow(x1, 3);
+		double x1move = (Math.pow(x1, 3));
 		double x2move = Math.pow(x2, 3);
 		double y1move = Math.pow(y1, 3);
 		
-		double fLWheelSpeed = 0;
-		double fRWheelSpeed = 0;
-		double bLWheelSpeed = 0;
-		double bRWheelSpeed = 0;
+		double deadZone = .07;
 		
-		if (x1move < .05 && x1move > -.05) {
+		if (x1move < deadZone && x1move > -deadZone) {
 			x1move = 0;
 		}
-		if (y1move < .05 && y1move > -.05) {
+		if (y1move < deadZone && y1move > -deadZone) {
 			y1move = 0;
 		}
-		if (x2move < .05 && x2move > -.05) {
+		if (x2move < deadZone && x2move > -deadZone) {
 			x2move = 0;
 		}
 		
-		fLWheelSpeed = (x1move - y1move + x2move);
-		fRWheelSpeed = (-x1move - y1move + x2move);
-		bLWheelSpeed = (x1move + y1move + x2move);
-		bRWheelSpeed = (-x1move + y1move + x2move);
-		
-		if (Robot.oi.joystick.getRawButton(1) && (!(x1move == 0) || !(x2move == 0) || !(y1move == 0))) { // should invert controls
-			fLMotor.set(-x1move + y1move + (x2move / 2));
-			bLMotor.set(x1move + y1move + (x2move / 2));
-			fRMotor.set(-x1move - y1move + (x2move / 2));
-			bRMotor.set(x1move - y1move + (x2move / 2));
-		}
-		else if (!(x1move == 0) || !(x2move == 0) || !(y1move == 0)) {
-			fLMotor.set(x1move - y1move + (x2move / 2));
-			bLMotor.set(-x1move - y1move + (x2move / 2));
-			fRMotor.set(x1move + y1move + (x2move / 2));
-			bRMotor.set(-x1move + y1move + (x2move / 2));
+		if ((Robot.oi.joystick.getRawButton(1))) { // should invert controls
+			set(fLMotor, (-x1move + y1move + (x2move / 2)));
+			set(bLMotor, (x1move + y1move + (x2move / 2)));
+			set(fRMotor, (-x1move - y1move + (x2move / 2)));
+			set(bRMotor, (x1move - y1move + (x2move / 2)));
 		}
 		else {
-			fLMotor.setDisabled();
-			fRMotor.setDisabled();
-			bLMotor.setDisabled();
-			bRMotor.setDisabled();
+			set(fLMotor, (x1move - y1move + (x2move / 2)));
+			set(bLMotor, (-x1move - y1move + (x2move / 2)));
+			set(fRMotor, (x1move + y1move + (x2move / 2)));
+			set(bRMotor, (-x1move + y1move + (x2move / 2)));
 		}
 	}
 	
@@ -94,47 +80,11 @@ public class DriveTrain extends Subsystem {
 		bRMotor.setDisabled();
 	}
 	
-	public void driveNavX(double x1, double y1, double x2) {
-		double x1move = Math.pow(x1, 3);
-		double x2move = Math.pow(x2, 3);
-		double y1move = Math.pow(y1, 3);
-		
-		if (Robot.oi.joystick.getRawButton(1)) {
-			Robot.controllerPID.setSetpoint(0.0f);
-			rotateToAngle = true;
+	public void set(VictorSP motor, double speed) {
+		if (speed == 0) {
+			motor.setDisabled();
+		} else {
+			motor.set(speed);
 		}
-		if (Robot.oi.joystick.getRawButton(2)) {
-			Robot.controllerPID.setSetpoint(90.0f);
-			rotateToAngle = true;
-		}
-		if (Robot.oi.joystick.getRawButton(3)) {
-			Robot.controllerPID.setSetpoint(179.9f);
-			rotateToAngle = true;
-		}
-		if (Robot.oi.joystick.getRawButton(4)) {
-			Robot.controllerPID.setSetpoint(-90.0f);
-			rotateToAngle = true;
-		}
-		double currentRotateRate;
-		if (rotateToAngle) {
-			Robot.controllerPID.enable();
-			currentRotateRate = rotateToAngleRate;
-			
-		}
-		else {
-			Robot.controllerPID.disable();
-			currentRotateRate = Robot.oi.joystick.getTwist();
-		}
-		
-		try {
-			driveTrain.mecanumDrive_Cartesian(x1move, y1move, currentRotateRate, Robot.navx.getAngle());
-		}
-		catch (RuntimeException ex) {
-			DriverStation.reportError("Error communicating with drive system:  " + ex.getMessage(), true);
-			
-		}
-		Timer.delay(0.005);
-		
 	}
-	
 }
