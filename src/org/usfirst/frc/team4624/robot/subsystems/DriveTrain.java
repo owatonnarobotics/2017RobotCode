@@ -73,6 +73,43 @@ public class DriveTrain extends Subsystem {
 		}
 	}
 	
+	public void autoRotateDrive(){
+		if(Robot.oi.joystick.getRawButton(1)){
+			Robot.navX.reset();
+		}
+		if(Robot.oi.joystick.getRawButton(2)){
+			Robot.controllerPID.setSetpoint(0.0f);
+			rotateToAngle = true;
+		}
+		if(Robot.oi.joystick.getRawButton(3)){
+			Robot.controllerPID.setSetpoint(90.0f);
+			rotateToAngle = true;
+		}
+		if(Robot.oi.joystick.getRawButton(4)){
+			Robot.controllerPID.setSetpoint(179.9f);
+			rotateToAngle = true;
+		}
+		if(Robot.oi.joystick.getRawButton(5)){
+			Robot.controllerPID.setSetpoint(-90.0);
+			rotateToAngle = true;
+		}
+		double currentRotate;
+		if(rotateToAngle){
+			Robot.controllerPID.enable();
+			currentRotate = rotateToAngleRate;
+		}else{
+			Robot.controllerPID.disable();
+			currentRotate = Robot.oi.joystick.getTwist();
+		}
+		
+		try{
+			Robot.driveTrain.driveTrain.mecanumDrive_Cartesian(Robot.oi.joystick.getX(), Robot.oi.joystick.getY(), currentRotate, Robot.navX.getAngle());
+		} catch( RuntimeException ex ) {
+            DriverStation.reportError("Error communicating with drive system:  " + ex.getMessage(), true);
+        }
+		
+	}
+	
 	public void stop() {
 		fLMotor.setDisabled();
 		bLMotor.setDisabled();

@@ -25,16 +25,24 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * IterativeRobot documentation. If you change the name of this class or the package after creating this project, you must also update the
  * manifest file in the resource directory.
  */
-public class Robot extends IterativeRobot {
+public class Robot extends IterativeRobot implements PIDOutput{
 	
 	public static final ExampleSubsystem	exampleSubsystem	= new ExampleSubsystem();
 	public static final DriveTrain			driveTrain			= new DriveTrain();
 	public static OI						oi;
 	public static final Shooter				shooter				= new Shooter();
-	public static AHRS                      NavX;
+	public static AHRS                      navX;
+	public static PIDController             controllerPID;
 	
 	Command									autonomousCommand;
 	SendableChooser							chooser;
+	
+	static final double kP = 0.03;
+    static final double kI = 0.00;
+    static final double kD = 0.00;
+    static final double kF = 0.00;
+    
+    static final double kToleranceDegrees = 2.0f;
 	
 	/**
 	 * This function is run when the robot is first started up and should be used for any initialization code.
@@ -46,6 +54,19 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+		
+		try{
+			navX = new AHRS(SPI.Port.kMXP);
+		}catch(RuntimeException ex){
+			DriverStation.reportError("Error instantiating navX MXP: " + ex.getMessage(),true);
+		}
+		controllerPID = new PIDController(kP, kI, kD, kF, navX, this);
+		controllerPID.setInputRange(-180.0f, 180.0f);
+		controllerPID.setOutputRange(-1.0, 1.0);
+		controllerPID.setAbsoluteTolerance(kToleranceDegrees);
+		controllerPID.setContinuous(true);
+		
+		LiveWindow.addActuator("DriveSystem", "RotateController", controllerPID);
 	}
 	
 	/**
@@ -102,6 +123,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		driveTrain.autoRotateDrive();
 	}
 	
 	/**
@@ -109,5 +131,11 @@ public class Robot extends IterativeRobot {
 	 */
 	public void testPeriodic() {
 		LiveWindow.run();
+	}
+
+	@Override
+	public void pidWrite(double output) {
+		// TODO Auto-generated method stub
+		driveTrain.rotateToAngleRate = output;
 	}
 }
