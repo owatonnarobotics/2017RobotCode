@@ -6,6 +6,8 @@ import org.usfirst.frc.team4624.robot.subsystems.Shooter;
 import org.usfirst.frc.team4624.template.ExampleCommand;
 import org.usfirst.frc.team4624.template.ExampleSubsystem;
 
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PIDController;
@@ -29,6 +31,7 @@ public class Robot extends IterativeRobot {
 	public static final DriveTrain			driveTrain			= new DriveTrain();
 	public static OI						oi;
 	public static final Shooter				shooter				= new Shooter();
+	public static AHRS                      NavX;
 	
 	Command									autonomousCommand;
 	SendableChooser							chooser;
