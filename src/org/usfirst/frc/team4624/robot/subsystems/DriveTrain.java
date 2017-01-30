@@ -42,7 +42,7 @@ public class DriveTrain extends Subsystem {
 		
 	}
 	
-	public void driveRaw(double x1, double y1, double x2) {
+	public void driveJoy(double x1, double y1, double x2) {
 		double x1move = (Math.pow(x1, 3));
 		double x2move = Math.pow(x2, 3);
 		double y1move = Math.pow(y1, 3);
@@ -60,6 +60,37 @@ public class DriveTrain extends Subsystem {
 		}
 		
 		if ((Robot.oi.joystick.getRawButton(1))) { // should invert controls
+			set(fLMotor, (-x1move + y1move + (x2move / 2)));
+			set(bLMotor, (x1move + y1move + (x2move / 2)));
+			set(fRMotor, (-x1move - y1move + (x2move / 2)));
+			set(bRMotor, (x1move - y1move + (x2move / 2)));
+		}
+		else {
+			set(fLMotor, (x1move - y1move + (x2move / 2)));
+			set(bLMotor, (-x1move - y1move + (x2move / 2)));
+			set(fRMotor, (x1move + y1move + (x2move / 2)));
+			set(bRMotor, (-x1move + y1move + (x2move / 2)));
+		}
+	}
+	
+	public void driveXBox(double x1, double y1, double x2) {
+		double x1move = -(Math.pow(x1, 3));
+		double x2move = Math.pow(x2, 3);
+		double y1move = Math.pow(y1, 3);
+		
+		double deadZone = .07;
+		
+		if (x1move < deadZone && x1move > -deadZone) {
+			x1move = 0;
+		}
+		if (y1move < deadZone && y1move > -deadZone) {
+			y1move = 0;
+		}
+		if (x2move < deadZone && x2move > -deadZone) {
+			x2move = 0;
+		}
+		
+		if (!(Robot.oi.joystick.getRawButton(1))) { // should invert controls
 			set(fLMotor, (-x1move + y1move + (x2move / 2)));
 			set(bLMotor, (x1move + y1move + (x2move / 2)));
 			set(fRMotor, (-x1move - y1move + (x2move / 2)));
