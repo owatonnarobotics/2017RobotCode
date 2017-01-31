@@ -108,6 +108,8 @@ public class DriveTrain extends Subsystem {
             DriverStation.reportError("Error communicating with drive system:  " + ex.getMessage(), true);
         }
 		
+		Timer.delay(0.005);
+		
 	}
 	
 	public void stop() {
