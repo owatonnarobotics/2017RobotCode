@@ -15,40 +15,37 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class DriveTrain extends Subsystem {
-	
+
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-	
-	final VictorSP			fLMotor			= new VictorSP(RobotMap.frontLeftMotor);
-	final VictorSP			fRMotor			= new VictorSP(RobotMap.frontRightMotor);
-	final VictorSP			bLMotor			= new VictorSP(RobotMap.backLeftMotor);
-	final VictorSP			bRMotor			= new VictorSP(RobotMap.backRightMotor);
-	
-	public static double	rotateToAngleRate;
-	boolean					rotateToAngle	= false;
-	
-	RobotDrive				driveTrain		= new RobotDrive(fLMotor, bLMotor, fRMotor, bRMotor);
-	
+
+	final VictorSP fLMotor = new VictorSP(RobotMap.frontLeftMotor);
+	final VictorSP fRMotor = new VictorSP(RobotMap.frontRightMotor);
+	final VictorSP bLMotor = new VictorSP(RobotMap.backLeftMotor);
+	final VictorSP bRMotor = new VictorSP(RobotMap.backRightMotor);
+
+	RobotDrive driveTrain = new RobotDrive(fLMotor, bLMotor, fRMotor, bRMotor);
+
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		setDefaultCommand(new Drive());
 	}
-	
+
 	public void drive(double x, double y, double rotation) {
 		double xmove = Math.pow(x, 3);
 		double ymove = Math.pow(y, 3);
 		double rmove = Math.pow(rotation, 3);
 		driveTrain.mecanumDrive_Cartesian(xmove, ymove, rmove, 0);
-		
+
 	}
-	
+
 	public void driveRaw(double x1, double y1, double x2) {
 		double x1move = (Math.pow(x1, 3));
 		double x2move = Math.pow(x2, 3);
 		double y1move = Math.pow(y1, 3);
-		
+
 		double deadZone = .07;
-		
+
 		if (x1move < deadZone && x1move > -deadZone) {
 			x1move = 0;
 		}
@@ -58,67 +55,44 @@ public class DriveTrain extends Subsystem {
 		if (x2move < deadZone && x2move > -deadZone) {
 			x2move = 0;
 		}
-		
+
 		if ((Robot.oi.joystick.getRawButton(1))) { // should invert controls
 			set(fLMotor, (-x1move + y1move + (x2move / 2)));
 			set(bLMotor, (x1move + y1move + (x2move / 2)));
 			set(fRMotor, (-x1move - y1move + (x2move / 2)));
 			set(bRMotor, (x1move - y1move + (x2move / 2)));
-		}
-		else {
+		} else {
 			set(fLMotor, (x1move - y1move + (x2move / 2)));
 			set(bLMotor, (-x1move - y1move + (x2move / 2)));
 			set(fRMotor, (x1move + y1move + (x2move / 2)));
 			set(bRMotor, (-x1move + y1move + (x2move / 2)));
 		}
 	}
-	
-	public void autoRotateDrive(){
-		if(Robot.oi.joystick.getRawButton(1)){
-			Robot.navX.reset();
+
+	public void autoRotate(boolean turnRight, float targetAngle) {
+		double acceptedError = 2.0;
+		while ((Math.abs(targetAngle - Robot.navX.getYaw()) > acceptedError)) {
+			if (turnRight) {
+				set(fLMotor, -.25);
+				set(fRMotor, -.25);
+				set(bLMotor, -.25);
+				set(bRMotor, -.25);
+			} else {
+				set(fLMotor, .25);
+				set(fRMotor, .25);
+				set(bLMotor, .25);
+				set(bRMotor, .25);
+			}
 		}
-		if(Robot.oi.joystick.getRawButton(2)){
-			Robot.controllerPID.setSetpoint(0.0f);
-			rotateToAngle = true;
-		}
-		if(Robot.oi.joystick.getRawButton(3)){
-			Robot.controllerPID.setSetpoint(90.0f);
-			rotateToAngle = true;
-		}
-		if(Robot.oi.joystick.getRawButton(4)){
-			Robot.controllerPID.setSetpoint(179.9f);
-			rotateToAngle = true;
-		}
-		if(Robot.oi.joystick.getRawButton(5)){
-			Robot.controllerPID.setSetpoint(-90.0);
-			rotateToAngle = true;
-		}
-		double currentRotate;
-		if(rotateToAngle){
-			Robot.controllerPID.enable();
-			currentRotate = rotateToAngleRate;
-		}else{
-			Robot.controllerPID.disable();
-			currentRotate = Robot.oi.joystick.getTwist();
-		}
-		
-		try{
-			Robot.driveTrain.driveTrain.mecanumDrive_Cartesian(Robot.oi.joystick.getX(), Robot.oi.joystick.getY(), currentRotate, Robot.navX.getAngle());
-		} catch( RuntimeException ex ) {
-            DriverStation.reportError("Error communicating with drive system:  " + ex.getMessage(), true);
-        }
-		
-		Timer.delay(0.005);
-		
 	}
-	
+
 	public void stop() {
 		fLMotor.setDisabled();
 		bLMotor.setDisabled();
 		fRMotor.setDisabled();
 		bRMotor.setDisabled();
 	}
-	
+
 	public void set(VictorSP motor, double speed) {
 		if (speed == 0) {
 			motor.setDisabled();

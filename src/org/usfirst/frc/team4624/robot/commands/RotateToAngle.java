@@ -1,23 +1,24 @@
-
 package org.usfirst.frc.team4624.robot.commands;
-
-import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team4624.robot.Robot;
 
-/**
- *
- */
-public class Drive extends Command {
+import edu.wpi.first.wpilibj.command.Command;
 
-	public Drive() {
-		// Use requires() here to declare subsystem dependencies
-		requires(Robot.driveTrain);
+public class RotateToAngle extends Command {
+
+	float targetAngle;
+	boolean turnRight;
+	public boolean isDone = false;
+
+	public RotateToAngle(float x) {
+		targetAngle = x;
+
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		Robot.driveTrain.stop();
+		whichWay();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -27,12 +28,29 @@ public class Drive extends Command {
 		// Robot.oi.xboxController.leftStick.getY(),
 		// Robot.oi.xboxController.rightStick.getX());
 		// use this for the twisty joystick
-		Robot.driveTrain.driveRaw(Robot.oi.joystick.getX(), Robot.oi.joystick.getY(), Robot.oi.joystick.getTwist());
+		Robot.driveTrain.autoRotate(turnRight, targetAngle);
+	}
+
+	public void whichWay() {
+		targetAngle = targetAngle + 180;
+		float actualAngle = Robot.navX.getYaw() + 180;
+
+		if (targetAngle > actualAngle) {
+			if (targetAngle - actualAngle < 180) {
+				turnRight = true;
+			}
+		} else if (actualAngle - targetAngle > 180) {
+			turnRight = true;
+
+		} else {
+			turnRight = false;
+		}
+
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		return isDone;
 	}
 
 	// Called once after isFinished returns true
