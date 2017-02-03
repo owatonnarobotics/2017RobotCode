@@ -12,6 +12,13 @@ public class RobotMap {
 	public static final int	backRightMotor	= 3;
 	public static final int	shooterMotor	= 4;
 	
+	//DIO
+	public static final int echoChannel = 0;
+	public static final int pingChannel = 1;
+	
+	//AutoRotate buttons
+	
+	
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.
 	// public static int leftMotor = 1;

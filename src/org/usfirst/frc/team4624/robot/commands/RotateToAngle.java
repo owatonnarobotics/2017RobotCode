@@ -9,6 +9,7 @@ public class RotateToAngle extends Command {
 	float targetAngle;
 	boolean turnRight;
 	public boolean isDone = false;
+	boolean move = false;
 
 	public RotateToAngle(float x) {
 		targetAngle = x;
@@ -18,7 +19,7 @@ public class RotateToAngle extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		Robot.driveTrain.stop();
-		whichWay();
+	
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -28,7 +29,28 @@ public class RotateToAngle extends Command {
 		// Robot.oi.xboxController.leftStick.getY(),
 		// Robot.oi.xboxController.rightStick.getX());
 		// use this for the twisty joystick
-		Robot.driveTrain.autoRotate(turnRight, targetAngle);
+		if(Robot.oi.joystick.getRawButton(Robot.oi.turnFoward)){
+			targetAngle = 0.0f;
+			move = true;
+		}
+		if(Robot.oi.joystick.getRawButton(Robot.oi.turnRight)){
+			targetAngle = 90.0f;
+			move = true;
+		}
+		if(Robot.oi.joystick.getRawButton(Robot.oi.turnBack)){
+			targetAngle = 179.9f;
+			move = true;
+		}
+		if(Robot.oi.joystick.getRawButton(Robot.oi.turnFoward)){
+			targetAngle = -90.0f;
+			move = true;
+		}
+		if(move){
+			whichWay();
+			Robot.driveTrain.autoRotate(turnRight, targetAngle);
+			move = false;
+		}
+	
 	}
 
 	public void whichWay() {
