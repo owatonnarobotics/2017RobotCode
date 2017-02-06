@@ -26,10 +26,10 @@ public class OI {
 			button2_10, button2_11;
 	
 
-	public static final int turnFoward = 1;
-	public static final int turnLeft = 2;
-	public static final int turnRight = 3;
-	public static final int turnBack = 4;
+	public static final int turnFoward = 9;
+	public static final int turnLeft = 10;
+	public static final int turnRight = 11;
+	public static final int turnBack = 12;
 	
 	
 	public OI() {
@@ -61,7 +61,7 @@ public class OI {
 		xboxController.rb.whenPressed(new ShootUp());
 		xboxController.lb.whenPressed(new ShootDown());
 		xboxController.x.whenPressed(new ShootStop());
-		
+		//YMNTL
 		
 	}
 	
