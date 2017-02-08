@@ -13,6 +13,7 @@ public class Drive extends Command {
 	public Drive() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrain);
+		requires(Robot.sensorArray);
 	}
 	
 	// Called just before this Command runs the first time
@@ -27,6 +28,8 @@ public class Drive extends Command {
 		//		Robot.oi.xboxController.rightStick.getX());
 		//use this for the twisty joystick
 		Robot.driveTrain.driveJoy(Robot.oi.joystick.getX(), Robot.oi.joystick.getY(), Robot.oi.joystick.getTwist());
+		
+		Robot.sensorArray.displayDistance();
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()
