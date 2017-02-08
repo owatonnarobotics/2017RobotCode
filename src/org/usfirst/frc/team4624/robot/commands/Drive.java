@@ -46,9 +46,15 @@ public class Drive extends Command {
 		if(Robot.oi.joystick.getRawButton(Robot.oi.turnRight)){
 			Robot.driveTrain.autoRotate(90.0f);
 		}
+		
+		if(Robot.oi.joystick.getRawButton(Robot.oi.resetPosition)){
+			Robot.navX.reset();
+		}
 	
 		
 	}
+	
+	
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {

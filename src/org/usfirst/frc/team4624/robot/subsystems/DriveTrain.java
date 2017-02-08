@@ -70,19 +70,42 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void autoRotate(float targetAngle) {
-		double acceptedError = 2.0;
+		float acceptedError = 2.0f;
+		boolean turn = false;
+		
 		while ((Math.abs(targetAngle - Robot.navX.getYaw()) > acceptedError)) {
+			turn = whichWay(targetAngle);
 			
-				set(fLMotor, -.25);
-				set(fRMotor, -.25);
-				set(bLMotor, -.25);
-				set(bRMotor, -.25);
-			
+			if(!turn){
 				set(fLMotor, .25);
 				set(fRMotor, .25);
 				set(bLMotor, .25);
 				set(bRMotor, .25);
-			
+			}else{
+				set(fLMotor, -.25);
+				set(fRMotor, -.25);
+				set(bLMotor, -.25);
+				set(bRMotor, -.25);
+			}
+		}
+		
+	}
+	
+	public static boolean whichWay(float target){
+		//true = counter-clockwise
+		
+		float currentPos = Robot.navX.getYaw();
+		float targetPos;
+		targetPos = target + 180;
+		currentPos = currentPos + 180;
+		if(targetPos > currentPos){
+			if(targetPos - currentPos > 180){
+				return true;
+			}else return false;
+		}else{
+			if(currentPos - targetPos > 180){
+			return false;
+			}else return true;
 		}
 	}
 

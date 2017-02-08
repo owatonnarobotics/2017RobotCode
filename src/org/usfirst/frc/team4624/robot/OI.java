@@ -25,11 +25,11 @@ public class OI {
 	public static JoystickButton	button2_1, button2_2, button2_3, button2_4, button2_5, button2_6, button2_7, button2_8, button2_9,
 			button2_10, button2_11;
 	
-
+	public static final int resetPosition = 8;
 	public static final int turnFoward = 9;
 	public static final int turnLeft = 10;
-	public static final int turnRight = 11;
-	public static final int turnBack = 12;
+	public static final int turnRight = 12;
+	public static final int turnBack = 11;
 	
 	
 	public OI() {
