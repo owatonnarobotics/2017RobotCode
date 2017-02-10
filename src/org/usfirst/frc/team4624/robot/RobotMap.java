@@ -11,7 +11,8 @@ public class RobotMap {
 	public static final int	frontRightMotor	= 1;
 	public static final int	backLeftMotor	= 2;
 	public static final int	backRightMotor	= 3;
-	public static final int	shooterMotor	= 4;
+	public static final int	pickupMotor  	= 4;
+	public static final int shooterMotor    = 5;
 	
 	//DIO
 	public static final int ECHO_CHANNEL_1  = 0;

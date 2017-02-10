@@ -1,8 +1,5 @@
 package org.usfirst.frc.team4624.robot;
 
-import org.usfirst.frc.team4624.robot.commands.ShootDown;
-import org.usfirst.frc.team4624.robot.commands.ShootStop;
-import org.usfirst.frc.team4624.robot.commands.ShootUp;
 import org.usfirst.frc.team4624.robot.library.XboxController;
 import org.usfirst.frc.team4624.template.ExampleCommand;
 
@@ -19,11 +16,8 @@ public class OI {
 	public static XboxController	xboxController	= new XboxController();
 	
 	public static Joystick			joystick		= new Joystick(0);
-	public static Joystick			joystick2		= new Joystick(1);
 	
 	public static JoystickButton	button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11;
-	public static JoystickButton	button2_1, button2_2, button2_3, button2_4, button2_5, button2_6, button2_7, button2_8, button2_9,
-			button2_10, button2_11;
 	
 	public OI() {
 		
@@ -39,21 +33,9 @@ public class OI {
 		button10 = new JoystickButton(joystick, 10);
 		button11 = new JoystickButton(joystick, 11);
 		
-		button2_1 = new JoystickButton(joystick2, 1);
-		button2_2 = new JoystickButton(joystick2, 2);
-		button2_3 = new JoystickButton(joystick2, 3);
-		button2_4 = new JoystickButton(joystick2, 4);
-		button2_5 = new JoystickButton(joystick2, 5);
-		button2_6 = new JoystickButton(joystick2, 6);
-		button2_7 = new JoystickButton(joystick2, 7);
-		button2_8 = new JoystickButton(joystick2, 8);
-		button2_9 = new JoystickButton(joystick2, 9);
-		button2_10 = new JoystickButton(joystick2, 10);
-		button2_11 = new JoystickButton(joystick2, 11);
-		
-		xboxController.rb.whenPressed(new ShootUp());
-		xboxController.lb.whenPressed(new ShootDown());
-		xboxController.x.whenPressed(new ShootStop());
+		//xboxController.rb.whenPressed(new ShootUp());
+		//xboxController.lb.whenPressed(new ShootDown());
+		//xboxController.x.whenPressed(new ShootStop());
 		
 	}
 	
