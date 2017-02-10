@@ -68,12 +68,18 @@ public class DriveTrain extends Subsystem {
 			set(bRMotor, (-x1move + y1move + (x2move / 2)));
 		}
 	}
+	
+	/**
+	 * Rotates to a given angle based on the NavX's gyro
+	 * @param targetAngle targeted angle
+	 */
 
 	public void autoRotate(float targetAngle) {
 		float acceptedError = 2.0f;
 		boolean turn = false;
+		int timeSince = 0;
 		
-		while ((Math.abs(targetAngle - Robot.navX.getYaw()) > acceptedError)) {
+		while (timeSince < 5) {
 			turn = whichWay(targetAngle);
 			
 			if(!turn){
@@ -87,9 +93,18 @@ public class DriveTrain extends Subsystem {
 				set(bLMotor, -.25);
 				set(bRMotor, -.25);
 			}
+			if(Math.abs(targetAngle - Robot.navX.getYaw()) > acceptedError){
+				timeSince++;
+			}else timeSince = 0;
 		}
 		
 	}
+	
+	/**
+	 *Determines which way the robot should turn. 
+	 * @param target The targeted angle (Float)
+	 * @return True if it should turn counter-clockwise
+	 */
 	
 	public static boolean whichWay(float target){
 		//true = counter-clockwise
