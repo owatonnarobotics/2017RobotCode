@@ -2,7 +2,7 @@
 package org.usfirst.frc.team4624.robot;
 
 import org.usfirst.frc.team4624.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team4624.robot.subsystems.SensorArray;
+
 import org.usfirst.frc.team4624.robot.subsystems.Shooter;
 import org.usfirst.frc.team4624.template.ExampleCommand;
 import org.usfirst.frc.team4624.template.ExampleSubsystem;
@@ -33,7 +33,6 @@ public class Robot extends IterativeRobot{
 	public static OI						oi;
 	public static final Shooter				shooter				= new Shooter();
 	public static AHRS                      navX;
-	public static SensorArray               sensorArray         = new SensorArray();
 	
 	Command									autonomousCommand;
 	SendableChooser							chooser;
@@ -53,6 +52,7 @@ public class Robot extends IterativeRobot{
 		}catch(RuntimeException ex){
 			DriverStation.reportError("Error instantiating navX MXP: " + ex.getMessage(),true);
 		}
+
 	}
 	
 	/**
@@ -109,6 +109,7 @@ public class Robot extends IterativeRobot{
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("NavX Gyro: ", Robot.navX.getYaw());
 
 	}
 	

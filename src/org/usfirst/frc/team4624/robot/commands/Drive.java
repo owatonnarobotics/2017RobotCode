@@ -2,6 +2,7 @@
 package org.usfirst.frc.team4624.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4624.robot.Robot;
 
@@ -9,9 +10,8 @@ import org.usfirst.frc.team4624.robot.Robot;
  *
  */
 public class Drive extends Command {
-	
+
 	float tagetAngle;
-	
 
 	public Drive() {
 		// Use requires() here to declare subsystem dependencies
@@ -31,30 +31,27 @@ public class Drive extends Command {
 		// Robot.oi.xboxController.rightStick.getX());
 		// use this for the twisty joystick
 		Robot.driveTrain.driveRaw(Robot.oi.joystick.getX(), Robot.oi.joystick.getY(), Robot.oi.joystick.getTwist());
-		
-		if(Robot.oi.joystick.getRawButton(Robot.oi.turnBack)){
+
+		if (Robot.oi.joystick.getRawButton(Robot.oi.turnBack)) {
 			Robot.driveTrain.autoRotate(179.9f);
 		}
-		if(Robot.oi.joystick.getRawButton(Robot.oi.turnFoward)){
-			Robot.driveTrain.autoRotate(0.0f);
+		if (Robot.oi.joystick.getRawButton(Robot.oi.turnFoward)) {
+			Robot.driveTrain.autoRotate(0.1f);
 		}
-		
-		if(Robot.oi.joystick.getRawButton(Robot.oi.turnLeft)){
-			Robot.driveTrain.autoRotate(-90.0f);
-		}
-	
-		if(Robot.oi.joystick.getRawButton(Robot.oi.turnRight)){
+
+		if (Robot.oi.joystick.getRawButton(Robot.oi.turnLeft)) {
 			Robot.driveTrain.autoRotate(90.0f);
 		}
-		
-		if(Robot.oi.joystick.getRawButton(Robot.oi.resetPosition)){
+
+		if (Robot.oi.joystick.getRawButton(Robot.oi.turnRight)) {
+			Robot.driveTrain.autoRotate(-90.0f);
+		}
+
+		if (Robot.oi.joystick.getRawButton(Robot.oi.resetPosition)) {
 			Robot.navX.reset();
 		}
-	
-		
+
 	}
-	
-	
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
