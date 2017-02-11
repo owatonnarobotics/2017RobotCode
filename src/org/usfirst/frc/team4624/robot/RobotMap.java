@@ -24,6 +24,9 @@ public class RobotMap {
 	public static final int PING_CHANNEL_1    = 6;
 	public static final int PING_CHANNEL_2    = 7;
 	
+	//RELAY
+	public static final int AGITATOR        = 0;
+	
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.
 	// public static int leftMotor = 1;

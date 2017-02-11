@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team4624.robot;
 
+import org.usfirst.frc.team4624.robot.subsystems.Agitator;
 import org.usfirst.frc.team4624.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4624.robot.subsystems.IntakeMech;
 import org.usfirst.frc.team4624.robot.subsystems.SensorArray;
@@ -33,6 +34,7 @@ public class Robot extends IterativeRobot {
 	public static final SensorArray         sensorArray         = new SensorArray();
 	public static final IntakeMech          intakeMech          = new IntakeMech();
 	public static final Shooter				shooter				= new Shooter();
+	public static final Agitator            agitator            = new Agitator();
 	
 	Command									autonomousCommand;
 	SendableChooser							chooser;
