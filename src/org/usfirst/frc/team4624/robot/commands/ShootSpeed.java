@@ -22,7 +22,8 @@ public class ShootSpeed extends Command {
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.shooter.setSpeed(Robot.oi.joystick.getThrottle());
+		double power = 1 - ((Robot.oi.joystick.getThrottle() + 1)/2);
+		Robot.shooter.setSpeed(power);
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()

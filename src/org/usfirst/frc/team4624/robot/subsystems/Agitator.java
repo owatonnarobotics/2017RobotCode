@@ -16,6 +16,7 @@ public class Agitator extends Subsystem {
     // here. Call these from Commands.
 	
 	private Relay mixer = new Relay(RobotMap.AGITATOR);
+	
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

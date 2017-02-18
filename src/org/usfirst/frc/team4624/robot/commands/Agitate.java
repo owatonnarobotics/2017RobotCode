@@ -9,6 +9,8 @@ import org.usfirst.frc.team4624.robot.Robot;
  *
  */
 public class Agitate extends Command {
+	
+	public static boolean move = false;
 
     public Agitate() {
         // Use requires() here to declare subsystem dependencies
@@ -28,7 +30,13 @@ public class Agitate extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.agitator.start();
+    	if(Robot.oi.joystick.getRawButton(Robot.oi.agitate)){
+    		move = !move;
+    	}
+    	if(move){
+    		Robot.agitator.start();
+    	}else Robot.agitator.stop();
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

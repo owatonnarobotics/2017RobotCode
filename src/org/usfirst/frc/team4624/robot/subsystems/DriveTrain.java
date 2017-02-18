@@ -7,6 +7,7 @@ import org.usfirst.frc.team4624.robot.commands.Drive;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -39,7 +40,7 @@ public class DriveTrain extends Subsystem {
 		double ymove = Math.pow(y, 3);
 		double rmove = Math.pow(rotation, 3);
 		driveTrain.mecanumDrive_Cartesian(xmove, ymove, rmove, 0);
-		
+				
 	}
 	
 	public void driveJoy(double x1, double y1, double x2) {

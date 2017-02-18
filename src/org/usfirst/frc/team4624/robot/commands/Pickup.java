@@ -23,9 +23,9 @@ public class Pickup extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if (Robot.oi.joystick.getRawButton(Robot.oi.pickup)) {
-    		Robot.intakeMech.stop();
-    	} else {
     		Robot.intakeMech.pickup();
+    	} else {
+    		Robot.intakeMech.stop();
     	}
     	
     }
