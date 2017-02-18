@@ -13,6 +13,7 @@ public class RobotMap {
 	public static final int	backRightMotor	= 3;
 	public static final int	pickupMotor  	= 4;
 	public static final int shooterMotor    = 5;
+	public static final int climberMotor    = 6;
 	
 	//DIO
 	public static final int ECHO_CHANNEL_1  = 0;

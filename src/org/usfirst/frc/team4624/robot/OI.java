@@ -19,6 +19,8 @@ public class OI {
 	
 	public static JoystickButton	button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11;
 	
+	public static final int climb = 7;
+	public static final int pickup = 5;
 	public OI() {
 		
 		button1 = new JoystickButton(joystick, 1);
