@@ -16,7 +16,7 @@ public class IntakeMech extends Subsystem {
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new Pickup());
+        //setDefaultCommand(new Pickup());
     }
     
     public void pickup() {

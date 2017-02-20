@@ -8,9 +8,9 @@ import org.usfirst.frc.team4624.robot.Robot;
 /**
  *
  */
-public class ShootSpeed extends Command {
+public class Shoot extends Command {
 	
-	public ShootSpeed() {
+	public Shoot() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.shooter);
 	}
@@ -22,7 +22,12 @@ public class ShootSpeed extends Command {
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		double power = 1 - ((Robot.oi.joystick.getThrottle() + 1)/2);
+		double power = 0;
+		if (Robot.oi.joystick.getRawButton(Robot.oi.shoot)) {
+			power = 1 - ((Robot.oi.joystick.getThrottle() + 1)/2);
+		} else {
+			Robot.shooter.setSpeed(0);
+		}
 		Robot.shooter.setSpeed(power);
 	}
 	

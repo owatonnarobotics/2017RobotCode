@@ -3,7 +3,7 @@ package org.usfirst.frc.team4624.robot.subsystems;
 
 import org.usfirst.frc.team4624.robot.RobotMap;
 import org.usfirst.frc.team4624.robot.commands.Drive;
-import org.usfirst.frc.team4624.robot.commands.ShootSpeed;
+import org.usfirst.frc.team4624.robot.commands.Shoot;
 
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -20,7 +20,7 @@ public class Shooter extends Subsystem {
 	final VictorSP sMotor = new VictorSP(RobotMap.shooterMotor);
 	
 	public void initDefaultCommand() {
-		setDefaultCommand(new ShootSpeed());
+		setDefaultCommand(new Shoot());
 	}
 	
 	public void displayPower() {

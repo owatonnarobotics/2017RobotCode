@@ -1,6 +1,8 @@
 
 package org.usfirst.frc.team4624.robot;
 
+import org.usfirst.frc.team4624.autonomous.AutoDoNothing;
+import org.usfirst.frc.team4624.autonomous.AutoDriveAround;
 import org.usfirst.frc.team4624.robot.subsystems.Agitator;
 import org.usfirst.frc.team4624.robot.subsystems.Climber;
 import org.usfirst.frc.team4624.robot.subsystems.DriveTrain;
@@ -39,7 +41,7 @@ public class Robot extends IterativeRobot {
 	public static final Climber             climber             = new Climber();
 	
 	Command									autonomousCommand;
-	SendableChooser							chooser;
+	SendableChooser							autoAction;
 	
 	/**
 	 * This function is run when the robot is first started up and should be used for any initialization code.
@@ -47,10 +49,10 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		oi = new OI();
 		
-		chooser = new SendableChooser();
-		chooser.addDefault("Default Auto", new ExampleCommand());
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
+		autoAction = new SendableChooser();
+		autoAction.addDefault("Do Nothing", new AutoDoNothing());
+		autoAction.addObject("Drive Around", new AutoDriveAround());
+		SmartDashboard.putData("Auto mode (choose one)", autoAction);
 	}
 	
 	/**
@@ -74,7 +76,7 @@ public class Robot extends IterativeRobot {
 	 * comparisons to the switch structure below with additional strings & commands.
 	 */
 	public void autonomousInit() {
-		autonomousCommand = (Command) chooser.getSelected();
+		autonomousCommand = (Command) autoAction.getSelected();
 		
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector", "Default"); switch(autoSelected) { case "My Auto":

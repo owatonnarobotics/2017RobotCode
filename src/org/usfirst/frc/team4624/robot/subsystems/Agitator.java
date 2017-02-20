@@ -20,7 +20,7 @@ public class Agitator extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new Agitate());
+        //setDefaultCommand(new Agitate());
     }
     
     public void start() {

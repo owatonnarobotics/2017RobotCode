@@ -20,22 +20,23 @@ public class Agitate extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.agitator.stop();
-    	try {
+    	/*try {
 			this.wait(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.oi.joystick.getRawButton(Robot.oi.agitate)){
+    	/*if(Robot.oi.joystick.getRawButton(Robot.oi.agitate)){
     		move = !move;
     	}
     	if(move){
     		Robot.agitator.start();
-    	}else Robot.agitator.stop();
+    	}else Robot.agitator.stop();*/
+    	Robot.agitator.start();
     	
     }
 
