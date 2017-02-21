@@ -16,6 +16,7 @@ public class AutoRotate extends Command {
 	public AutoRotate(float angle) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrain);
+		requires(Robot.sensorArray);
 		targetAngle = angle;
 	}
 	
@@ -29,7 +30,7 @@ public class AutoRotate extends Command {
 	protected void execute() {
 		boolean turn = true;
 		
-		float currentPos = Robot.navX.getYaw();
+		float currentPos = Robot.sensorArray.getYaw();
 		float targetPos;
 		targetPos = targetAngle + 180;
 		currentPos = currentPos + 180;
@@ -51,16 +52,16 @@ public class AutoRotate extends Command {
 		}
 		
 		if (!turn) {
-			Robot.driveTrain.driveJoy(0, 0, ((Math.abs(Math.abs(targetAngle) - Math.abs(Robot.navX.getYaw()))) / 360) + .125);
+			Robot.driveTrain.driveJoy(0, 0, ((Math.abs(Math.abs(targetAngle) - Math.abs(Robot.sensorArray.getYaw()))) / 360) + .125);
 		}
 		else {
-			Robot.driveTrain.driveJoy(0, 0, -((Math.abs(Math.abs(targetAngle) - Math.abs(Robot.navX.getYaw()))) / 360) - .125);
+			Robot.driveTrain.driveJoy(0, 0, -((Math.abs(Math.abs(targetAngle) - Math.abs(Robot.sensorArray.getYaw()))) / 360) - .125);
 		}
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return (Math.abs(Math.abs(targetAngle) - Math.abs(Robot.navX.getYaw())) > acceptedError);
+		return (Math.abs(Math.abs(targetAngle) - Math.abs(Robot.sensorArray.getYaw())) > acceptedError);
 	}
 	
 	// Called once after isFinished returns true
