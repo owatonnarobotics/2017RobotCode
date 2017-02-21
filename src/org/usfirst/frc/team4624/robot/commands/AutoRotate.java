@@ -30,10 +30,9 @@ public class AutoRotate extends Command {
 	protected void execute() {
 		boolean turn = true;
 		
-		float currentPos = Robot.sensorArray.getYaw();
-		float targetPos;
-		targetPos = targetAngle + 180;
-		currentPos = currentPos + 180;
+		float currentPos = Robot.sensorArray.getYaw() + 180;
+		float targetPos = targetAngle + 180;
+		
 		if (targetPos > currentPos) {
 			if (targetPos - currentPos >= 180) {
 				turn = true;
