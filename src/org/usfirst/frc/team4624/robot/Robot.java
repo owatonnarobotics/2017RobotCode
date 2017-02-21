@@ -36,12 +36,12 @@ public class Robot extends IterativeRobot {
 	public static final ExampleSubsystem	exampleSubsystem	= new ExampleSubsystem();
 	public static final DriveTrain			driveTrain			= new DriveTrain();
 	public static OI						oi;
-	public static final SensorArray         sensorArray         = new SensorArray();
-	public static final IntakeMech          intakeMech          = new IntakeMech();
+	public static final SensorArray			sensorArray			= new SensorArray();
+	public static final IntakeMech			intakeMech			= new IntakeMech();
 	public static final Shooter				shooter				= new Shooter();
-	public static final Agitator            agitator            = new Agitator();
-	public static final Climber             climber             = new Climber();
-	public static AHRS                      navX;
+	public static final Agitator			agitator			= new Agitator();
+	public static final Climber				climber				= new Climber();
+	public static AHRS						navX;
 	
 	Command									autonomousCommand;
 	SendableChooser							autoAction;
@@ -53,7 +53,8 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		try {
 			navX = new AHRS(SPI.Port.kMXP);
-		} catch(RuntimeException ex) {
+		}
+		catch (RuntimeException ex) {
 			DriverStation.reportError("Error instantiating navX MXP: " + ex.getMessage(), true);
 		}
 		

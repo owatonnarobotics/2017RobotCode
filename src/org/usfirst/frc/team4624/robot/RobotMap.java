@@ -6,27 +6,27 @@ package org.usfirst.frc.team4624.robot;
  */
 public class RobotMap {
 	
-	//PWM
+	// PWM
 	public static final int	frontLeftMotor	= 10;
 	public static final int	frontRightMotor	= 11;
 	public static final int	backLeftMotor	= 12;
 	public static final int	backRightMotor	= 13;
-	public static final int	pickupMotor  	= 4;
-	public static final int shooterMotor    = 5;
-	public static final int climberMotor    = 6;
+	public static final int	pickupMotor		= 4;
+	public static final int	shooterMotor	= 5;
+	public static final int	climberMotor	= 6;
 	
-	//DIO
-	public static final int ECHO_CHANNEL_1  = 0;
-	//public static final int ECHO_CHANNEL_2  = 1;
-	//public static final int ECHO_CHANNEL_3  = 2;
-	//public static final int ECHO_CHANNEL_4  = 3;
-	//public static final int ECHO_CHANNEL_5  = 4;
-	//public static final int ECHO_CHANNEL_6  = 5;
-	public static final int PING_CHANNEL_1    = 6;
-	public static final int PING_CHANNEL_2    = 7;
+	// DIO
+	public static final int	ECHO_CHANNEL_1	= 0;
+	// public static final int ECHO_CHANNEL_2 = 1;
+	// public static final int ECHO_CHANNEL_3 = 2;
+	// public static final int ECHO_CHANNEL_4 = 3;
+	// public static final int ECHO_CHANNEL_5 = 4;
+	// public static final int ECHO_CHANNEL_6 = 5;
+	public static final int	PING_CHANNEL_1	= 6;
+	public static final int	PING_CHANNEL_2	= 7;
 	
-	//RELAY
-	public static final int AGITATOR        = 0;
+	// RELAY
+	public static final int	AGITATOR		= 0;
 	
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.

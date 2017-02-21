@@ -40,7 +40,7 @@ public class DriveTrain extends Subsystem {
 		double ymove = Math.pow(y, 3);
 		double rmove = Math.pow(rotation, 3);
 		driveTrain.mecanumDrive_Cartesian(xmove, ymove, rmove, 0);
-				
+		
 	}
 	
 	public void driveJoy(double x, double y, double r) {
@@ -115,7 +115,8 @@ public class DriveTrain extends Subsystem {
 	public void set(VictorSP motor, double speed) {
 		if (speed == 0) {
 			motor.setDisabled();
-		} else {
+		}
+		else {
 			motor.set(speed);
 		}
 	}

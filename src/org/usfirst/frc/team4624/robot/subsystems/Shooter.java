@@ -20,7 +20,7 @@ public class Shooter extends Subsystem {
 	final VictorSP sMotor = new VictorSP(RobotMap.shooterMotor);
 	
 	public void initDefaultCommand() {
-		//setDefaultCommand(new Shoot());
+		// setDefaultCommand(new Shoot());
 	}
 	
 	public void displayPower() {
