@@ -54,6 +54,7 @@ public class SensorArray extends Subsystem {
 		return navX.getYaw();
 	}
 	
+	public void resetNavX() {
 		navX.reset();
 	}
 }

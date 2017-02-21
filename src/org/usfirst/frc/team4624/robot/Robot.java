@@ -112,6 +112,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		if (Robot.oi.joystick.getRawButton(Robot.oi.resetNavX)) {
+			Robot.sensorArray.resetNavX();
 		}
 	}
 	
