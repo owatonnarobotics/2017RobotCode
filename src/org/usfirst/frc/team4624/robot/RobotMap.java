@@ -7,10 +7,10 @@ package org.usfirst.frc.team4624.robot;
 public class RobotMap {
 	
 	//PWM
-	public static final int	frontLeftMotor	= 0;
-	public static final int	frontRightMotor	= 1;
-	public static final int	backLeftMotor	= 2;
-	public static final int	backRightMotor	= 3;
+	public static final int	frontLeftMotor	= 10;
+	public static final int	frontRightMotor	= 11;
+	public static final int	backLeftMotor	= 12;
+	public static final int	backRightMotor	= 13;
 	public static final int	pickupMotor  	= 4;
 	public static final int shooterMotor    = 5;
 	public static final int climberMotor    = 6;

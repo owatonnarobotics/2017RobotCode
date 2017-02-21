@@ -34,7 +34,6 @@ public class Drive extends Command {
 			Robot.driveTrain.driveJoy(Robot.oi.joystick.getX(), Robot.oi.joystick.getY(), Robot.oi.joystick.getTwist());
 		}
 		
-		
 		Robot.sensorArray.displayDistance();
 	}
 	

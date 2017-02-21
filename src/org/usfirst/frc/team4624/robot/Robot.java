@@ -12,6 +12,8 @@ import org.usfirst.frc.team4624.robot.subsystems.Shooter;
 import org.usfirst.frc.team4624.template.ExampleCommand;
 import org.usfirst.frc.team4624.template.ExampleSubsystem;
 
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PIDController;
@@ -39,6 +41,7 @@ public class Robot extends IterativeRobot {
 	public static final Shooter				shooter				= new Shooter();
 	public static final Agitator            agitator            = new Agitator();
 	public static final Climber             climber             = new Climber();
+	public static AHRS                      navX;
 	
 	Command									autonomousCommand;
 	SendableChooser							autoAction;
@@ -48,6 +51,11 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		oi = new OI();
+		try {
+			navX = new AHRS(SPI.Port.kMXP);
+		} catch(RuntimeException ex) {
+			DriverStation.reportError("Error instantiating navX MXP: " + ex.getMessage(), true);
+		}
 		
 		autoAction = new SendableChooser();
 		autoAction.addDefault("Do Nothing", new AutoDoNothing());
@@ -109,6 +117,9 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		if (Robot.oi.joystick.getRawButton(Robot.oi.resetNavX)) {
+			Robot.navX.reset();
+		}
 	}
 	
 	/**
