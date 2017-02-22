@@ -55,10 +55,10 @@ public class OI {
 		shooterButton.toggleWhenActive(new Shoot());
 		agitatorButton.toggleWhenActive(new Agitate());
 		pickupButton.toggleWhenActive(new Pickup());
-		turnForwardButton.toggleWhenActive(new AutoRotate(0.0f));
-		turnLeftButton.toggleWhenActive(new AutoRotate(90.0f));
-		turnBackButton.toggleWhenActive(new AutoRotate(179.0f));
-		turnRightButton.toggleWhenActive(new AutoRotate(-90.0f));
+		turnForwardButton.whenPressed(new AutoRotate(0.0f));
+		turnLeftButton.whenPressed(new AutoRotate(90.0f));
+		turnBackButton.whenPressed(new AutoRotate(179.0f));
+		turnRightButton.whenPressed(new AutoRotate(-90.0f));
 		
 	}
 }

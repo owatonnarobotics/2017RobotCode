@@ -114,6 +114,8 @@ public class Robot extends IterativeRobot {
 		if (Robot.oi.joystick.getRawButton(Robot.oi.resetNavX)) {
 			Robot.sensorArray.resetNavX();
 		}
+
+		SmartDashboard.putDouble("NavX", Robot.sensorArray.getYaw());
 	}
 	
 	/**

@@ -30,7 +30,7 @@ public class Drive extends Command {
 		// use this for the twisty joystick
 		if (Robot.oi.joystick.getRawButton(Robot.oi.slow)) {
 			Robot.driveTrain.driveJoy((Robot.oi.joystick.getX() * slowFactor), (Robot.oi.joystick.getY() * slowFactor),
-					(Robot.oi.joystick.getTwist() * slowFactor));
+					(Robot.oi.joystick.getTwist() * (slowFactor - .2)));
 		}
 		else {
 			Robot.driveTrain.driveJoy(Robot.oi.joystick.getX(), Robot.oi.joystick.getY(), Robot.oi.joystick.getTwist());

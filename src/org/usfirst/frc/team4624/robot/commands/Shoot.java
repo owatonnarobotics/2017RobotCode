@@ -22,7 +22,7 @@ public class Shoot extends Command {
 	protected void initialize() {
 		Robot.shooter.setSpeed(0);
 		Robot.agitator.stop();
-		this.setTimeout(1.5);
+		this.setTimeout(.5);
 	}
 	
 	// Called repeatedly when this Command is scheduled to run
