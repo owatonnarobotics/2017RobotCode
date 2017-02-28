@@ -3,25 +3,20 @@ package org.usfirst.frc.team4624.robot;
 
 import org.usfirst.frc.team4624.autonomous.AutoDoNothing;
 import org.usfirst.frc.team4624.autonomous.AutoDriveAround;
+import org.usfirst.frc.team4624.autonomous.AutoPlaceGear;
+import org.usfirst.frc.team4624.autonomous.VisionDrive;
 import org.usfirst.frc.team4624.robot.subsystems.Agitator;
+import org.usfirst.frc.team4624.robot.subsystems.CameraPanTilt;
 import org.usfirst.frc.team4624.robot.subsystems.Climber;
 import org.usfirst.frc.team4624.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4624.robot.subsystems.IntakeMech;
 import org.usfirst.frc.team4624.robot.subsystems.SensorArray;
 import org.usfirst.frc.team4624.robot.subsystems.Shooter;
-import org.usfirst.frc.team4624.template.ExampleCommand;
 import org.usfirst.frc.team4624.template.ExampleSubsystem;
 
-import com.kauailabs.navx.frc.AHRS;
-
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDOutput;
-import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -41,6 +36,7 @@ public class Robot extends IterativeRobot {
 	public static final Shooter				shooter				= new Shooter();
 	public static final Agitator			agitator			= new Agitator();
 	public static final Climber				climber				= new Climber();
+	public static final CameraPanTilt       cameraPanTilt       = new CameraPanTilt();
 	
 	Command									autonomousCommand;
 	SendableChooser							autoAction;
@@ -54,6 +50,8 @@ public class Robot extends IterativeRobot {
 		autoAction = new SendableChooser();
 		autoAction.addDefault("Do Nothing", new AutoDoNothing());
 		autoAction.addObject("Drive Around", new AutoDriveAround());
+		autoAction.addObject("Place Gear", new AutoPlaceGear());
+		autoAction.addObject("Vision Place Gear", new VisionDrive());
 		SmartDashboard.putData("Auto mode (choose one)", autoAction);
 	}
 	

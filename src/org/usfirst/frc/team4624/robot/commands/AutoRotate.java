@@ -20,7 +20,7 @@ public class AutoRotate extends Command {
 		requires(Robot.driveTrain);
 		requires(Robot.sensorArray);
 		targetAngle = angle;
-		this.setTimeout(5);
+		this.setTimeout(2);
 	}
 	
 	// Called just before this Command runs the first time
@@ -70,7 +70,8 @@ public class AutoRotate extends Command {
 	
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return (Math.abs(Math.abs(targetAngle) - Math.abs(Robot.sensorArray.getYaw())) < acceptedError) || this.isTimedOut();
+		return  this.isTimedOut();
+		//Math.abs(Math.abs(targetAngle) - Math.abs(Robot.sensorArray.getYaw())) < acceptedError)
 	}
 	
 	// Called once after isFinished returns true

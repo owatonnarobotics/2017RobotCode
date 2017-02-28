@@ -24,7 +24,7 @@ public class SensorArray extends Subsystem {
 	}
 	
 	public SensorArray() {
-		sensor = new Ultrasonic(RobotMap.PING_CHANNEL_1, RobotMap.ECHO_CHANNEL_1);
+		sensor = new Ultrasonic(RobotMap.gearBoxDistancePing, RobotMap.gearBoxDistanceEcho);
 		sensor.setEnabled(true);
 		sensor.setAutomaticMode(true);
 		try {

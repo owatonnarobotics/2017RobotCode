@@ -5,10 +5,8 @@ import org.usfirst.frc.team4624.robot.commands.AutoRotate;
 import org.usfirst.frc.team4624.robot.commands.Pickup;
 import org.usfirst.frc.team4624.robot.commands.Shoot;
 import org.usfirst.frc.team4624.robot.library.XboxController;
-import org.usfirst.frc.team4624.template.ExampleCommand;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**

@@ -14,15 +14,17 @@ public class RobotMap {
 	public static final int	pickupMotor		= 4;
 	public static final int	shooterMotor	= 5;
 	public static final int	climberMotor	= 6;
+	public static final int cameraPanServo  = 7;
+	public static final int cameraTiltServo = 8;
 	
 	// DIO
-	public static final int	ECHO_CHANNEL_1	= 0;
+	public static final int	gearBoxDistanceEcho	= 0;
 	// public static final int ECHO_CHANNEL_2 = 1;
 	// public static final int ECHO_CHANNEL_3 = 2;
 	// public static final int ECHO_CHANNEL_4 = 3;
 	// public static final int ECHO_CHANNEL_5 = 4;
 	// public static final int ECHO_CHANNEL_6 = 5;
-	public static final int	PING_CHANNEL_1	= 6;
+	public static final int	gearBoxDistancePing	= 6;
 	public static final int	PING_CHANNEL_2	= 7;
 	
 	// RELAY
